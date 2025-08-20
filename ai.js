@@ -7,15 +7,23 @@ const hf = new HfInference(import.meta.env.VITE_HF_API)
 export async function getRecipeFromMistral(ingredientsArr) {
     const ingredientsString = ingredientsArr.join(", ")
     try {
-        const response = await hf.chatCompletion({
-            model: "mistralai/Mistral-7B-Instruct-v0.3",
-            messages: [
-                { role: "system", content: SYSTEM_PROMPT },
-                { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-            ],
-            max_tokens: 1024,
-        })
-        return response.choices[0].message.content
+    const response = await fetch("https://ai-kitchen-proxy.onrender.com/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "mistralai/Mistral-7B-Instruct-v0.3",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` }
+        ],
+        max_tokens: 1024
+      })
+    });
+
+        const data = await response.json();
+        return data.choices[0].message.content
     } catch (err) {
         console.error(err.message)
     }
