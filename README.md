@@ -3,7 +3,7 @@
 A mini React + Vite app that helps you decide what to cook based on the ingredients you already have at home.  
 Just enter your ingredients → AI suggests a dish → you cook with confidence!
 
-🔗 **Live Demo**: [AI Kitchen on GitHub Pages](https://BozicaG.github.io/ai-kitchen)
+🔗 **Live Demo**: [AI Kitchen on GitHub Pages](https://bozicag.github.io/Ai-Kitchen/)
 
 ## 🚀 Features
 
